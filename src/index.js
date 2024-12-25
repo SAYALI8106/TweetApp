@@ -1,4 +1,4 @@
-import express from "express";
+import express, { urlencoded } from "express";
 import morgan from "morgan";
 import { PORT } from "./config/serverConfig.js";
 import tweetRouter from "./routes/v1/tweet.js";
@@ -12,6 +12,8 @@ app.use(morgan("combined"));
 app.use(commonMiddleware);
 
 app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.text());
 
 app.set('view engine', 'ejs');
 app.set('views', "src" + '/views');

@@ -26,3 +26,24 @@ export const getTweetById = async (id)=>{
         throw new Error(error);    
     }
 }
+
+export const deleteTweet = async (id)=>{
+    try{
+        console.log("deleteTweet");
+        const tweet = await Tweet.findByIdAndDelete(id);
+        console.log("deleted Tweet",tweet);
+        return tweet;                                
+    }catch(error){
+        console.log("deleteTweet error");
+        throw new Error(error);    
+    }
+}           
+
+export const updateTweet = async (id, body)=>{
+    try{
+        const tweet = await Tweet.findByIdAndUpdate(id, {body} ,{new: true } );
+        return tweet;
+    }catch(error){
+        throw new Error(error);    
+    }
+}   
